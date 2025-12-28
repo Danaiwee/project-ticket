@@ -1,5 +1,5 @@
 import { Response } from "express";
-import z, { ZodError } from "zod";
+import { ZodError } from "zod";
 import { RequestError, ValidationError } from "../http-error.js";
 import logger from "../logger.js";
 
@@ -7,15 +7,18 @@ const sendErrorResponse = (
   res: Response,
   status: number,
   message: string,
-  errors?: Record<string, string[]> | undefined
+  errors?: Record<string, string[]>
 ) => {
-  return res.status(status).json({
+  const responseBody: ErrorResponse = {
     success: false,
     error: {
       message,
       details: errors,
     },
-  });
+    status,
+  };
+
+  return res.status(status).json(responseBody);
 };
 
 const handleError = (error: unknown, res: Response) => {
@@ -50,10 +53,11 @@ const handleError = (error: unknown, res: Response) => {
 
   if (error instanceof Error) {
     logger.error(error.message);
+    // กรณี Error ทั่วไปมักเป็น Internal Server Error (500)
     return sendErrorResponse(res, 500, error.message);
   }
 
-  logger.error({ err: error }, "An unexpected error ocurred");
+  logger.error({ err: error }, "An unexpected error occurred");
   return sendErrorResponse(res, 500, "An unexpected error occurred");
 };
 

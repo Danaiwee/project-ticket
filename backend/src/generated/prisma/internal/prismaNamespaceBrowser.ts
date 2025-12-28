@@ -105,7 +105,7 @@ export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeo
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  firstname: 'firstname',
+  firstName: 'firstName',
   lastName: 'lastName',
   email: 'email',
   password: 'password',
