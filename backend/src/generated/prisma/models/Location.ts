@@ -57,6 +57,8 @@ export type LocationMinAggregateOutputType = {
   importance: string | null
   details: string | null
   limitBooking: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type LocationMaxAggregateOutputType = {
@@ -74,6 +76,8 @@ export type LocationMaxAggregateOutputType = {
   importance: string | null
   details: string | null
   limitBooking: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type LocationCountAggregateOutputType = {
@@ -91,6 +95,8 @@ export type LocationCountAggregateOutputType = {
   importance: number
   details: number
   limitBooking: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -126,6 +132,8 @@ export type LocationMinAggregateInputType = {
   importance?: true
   details?: true
   limitBooking?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type LocationMaxAggregateInputType = {
@@ -143,6 +151,8 @@ export type LocationMaxAggregateInputType = {
   importance?: true
   details?: true
   limitBooking?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type LocationCountAggregateInputType = {
@@ -160,6 +170,8 @@ export type LocationCountAggregateInputType = {
   importance?: true
   details?: true
   limitBooking?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -264,6 +276,8 @@ export type LocationGroupByOutputType = {
   importance: string | null
   details: string | null
   limitBooking: number
+  createdAt: Date
+  updatedAt: Date
   _count: LocationCountAggregateOutputType | null
   _avg: LocationAvgAggregateOutputType | null
   _sum: LocationSumAggregateOutputType | null
@@ -304,6 +318,8 @@ export type LocationWhereInput = {
   importance?: Prisma.StringNullableFilter<"Location"> | string | null
   details?: Prisma.StringNullableFilter<"Location"> | string | null
   limitBooking?: Prisma.IntFilter<"Location"> | number
+  createdAt?: Prisma.DateTimeFilter<"Location"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Location"> | Date | string
   bookings?: Prisma.BookingListRelationFilter
 }
 
@@ -322,6 +338,8 @@ export type LocationOrderByWithRelationInput = {
   importance?: Prisma.SortOrderInput | Prisma.SortOrder
   details?: Prisma.SortOrderInput | Prisma.SortOrder
   limitBooking?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   bookings?: Prisma.BookingOrderByRelationAggregateInput
 }
 
@@ -343,6 +361,8 @@ export type LocationWhereUniqueInput = Prisma.AtLeast<{
   importance?: Prisma.StringNullableFilter<"Location"> | string | null
   details?: Prisma.StringNullableFilter<"Location"> | string | null
   limitBooking?: Prisma.IntFilter<"Location"> | number
+  createdAt?: Prisma.DateTimeFilter<"Location"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Location"> | Date | string
   bookings?: Prisma.BookingListRelationFilter
 }, "id" | "name">
 
@@ -361,6 +381,8 @@ export type LocationOrderByWithAggregationInput = {
   importance?: Prisma.SortOrderInput | Prisma.SortOrder
   details?: Prisma.SortOrderInput | Prisma.SortOrder
   limitBooking?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.LocationCountOrderByAggregateInput
   _avg?: Prisma.LocationAvgOrderByAggregateInput
   _max?: Prisma.LocationMaxOrderByAggregateInput
@@ -386,6 +408,8 @@ export type LocationScalarWhereWithAggregatesInput = {
   importance?: Prisma.StringNullableWithAggregatesFilter<"Location"> | string | null
   details?: Prisma.StringNullableWithAggregatesFilter<"Location"> | string | null
   limitBooking?: Prisma.IntWithAggregatesFilter<"Location"> | number
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Location"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Location"> | Date | string
 }
 
 export type LocationCreateInput = {
@@ -403,6 +427,8 @@ export type LocationCreateInput = {
   importance?: string | null
   details?: string | null
   limitBooking: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   bookings?: Prisma.BookingCreateNestedManyWithoutLocationInput
 }
 
@@ -421,6 +447,8 @@ export type LocationUncheckedCreateInput = {
   importance?: string | null
   details?: string | null
   limitBooking: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutLocationInput
 }
 
@@ -439,6 +467,8 @@ export type LocationUpdateInput = {
   importance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitBooking?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUpdateManyWithoutLocationNestedInput
 }
 
@@ -457,6 +487,8 @@ export type LocationUncheckedUpdateInput = {
   importance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitBooking?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.BookingUncheckedUpdateManyWithoutLocationNestedInput
 }
 
@@ -475,6 +507,8 @@ export type LocationCreateManyInput = {
   importance?: string | null
   details?: string | null
   limitBooking: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type LocationUpdateManyMutationInput = {
@@ -492,6 +526,8 @@ export type LocationUpdateManyMutationInput = {
   importance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitBooking?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LocationUncheckedUpdateManyInput = {
@@ -509,6 +545,8 @@ export type LocationUncheckedUpdateManyInput = {
   importance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitBooking?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LocationCountOrderByAggregateInput = {
@@ -526,6 +564,8 @@ export type LocationCountOrderByAggregateInput = {
   importance?: Prisma.SortOrder
   details?: Prisma.SortOrder
   limitBooking?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type LocationAvgOrderByAggregateInput = {
@@ -551,6 +591,8 @@ export type LocationMaxOrderByAggregateInput = {
   importance?: Prisma.SortOrder
   details?: Prisma.SortOrder
   limitBooking?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type LocationMinOrderByAggregateInput = {
@@ -568,6 +610,8 @@ export type LocationMinOrderByAggregateInput = {
   importance?: Prisma.SortOrder
   details?: Prisma.SortOrder
   limitBooking?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type LocationSumOrderByAggregateInput = {
@@ -607,6 +651,10 @@ export type FloatFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 export type LocationCreateNestedOneWithoutBookingsInput = {
   create?: Prisma.XOR<Prisma.LocationCreateWithoutBookingsInput, Prisma.LocationUncheckedCreateWithoutBookingsInput>
   connectOrCreate?: Prisma.LocationCreateOrConnectWithoutBookingsInput
@@ -636,6 +684,8 @@ export type LocationCreateWithoutBookingsInput = {
   importance?: string | null
   details?: string | null
   limitBooking: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type LocationUncheckedCreateWithoutBookingsInput = {
@@ -653,6 +703,8 @@ export type LocationUncheckedCreateWithoutBookingsInput = {
   importance?: string | null
   details?: string | null
   limitBooking: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type LocationCreateOrConnectWithoutBookingsInput = {
@@ -686,6 +738,8 @@ export type LocationUpdateWithoutBookingsInput = {
   importance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitBooking?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type LocationUncheckedUpdateWithoutBookingsInput = {
@@ -703,6 +757,8 @@ export type LocationUncheckedUpdateWithoutBookingsInput = {
   importance?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   details?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   limitBooking?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -751,6 +807,8 @@ export type LocationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   importance?: boolean
   details?: boolean
   limitBooking?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   bookings?: boolean | Prisma.Location$bookingsArgs<ExtArgs>
   _count?: boolean | Prisma.LocationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["location"]>
@@ -770,6 +828,8 @@ export type LocationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   importance?: boolean
   details?: boolean
   limitBooking?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["location"]>
 
 export type LocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -787,6 +847,8 @@ export type LocationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   importance?: boolean
   details?: boolean
   limitBooking?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["location"]>
 
 export type LocationSelectScalar = {
@@ -804,9 +866,11 @@ export type LocationSelectScalar = {
   importance?: boolean
   details?: boolean
   limitBooking?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type LocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "item" | "name" | "typeNumber" | "typeName" | "subdistrict" | "district" | "province" | "region" | "latitude" | "longitude" | "importance" | "details" | "limitBooking", ExtArgs["result"]["location"]>
+export type LocationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "item" | "name" | "typeNumber" | "typeName" | "subdistrict" | "district" | "province" | "region" | "latitude" | "longitude" | "importance" | "details" | "limitBooking" | "createdAt" | "updatedAt", ExtArgs["result"]["location"]>
 export type LocationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | Prisma.Location$bookingsArgs<ExtArgs>
   _count?: boolean | Prisma.LocationCountOutputTypeDefaultArgs<ExtArgs>
@@ -834,6 +898,8 @@ export type $LocationPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     importance: string | null
     details: string | null
     limitBooking: number
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["location"]>
   composites: {}
 }
@@ -1272,6 +1338,8 @@ export interface LocationFieldRefs {
   readonly importance: Prisma.FieldRef<"Location", 'String'>
   readonly details: Prisma.FieldRef<"Location", 'String'>
   readonly limitBooking: Prisma.FieldRef<"Location", 'Int'>
+  readonly createdAt: Prisma.FieldRef<"Location", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Location", 'DateTime'>
 }
     
 

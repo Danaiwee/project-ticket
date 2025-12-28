@@ -681,7 +681,9 @@ export const LocationScalarFieldEnum = {
   longitude: 'longitude',
   importance: 'importance',
   details: 'details',
-  limitBooking: 'limitBooking'
+  limitBooking: 'limitBooking',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
@@ -690,7 +692,11 @@ export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typ
 export const BookingScalarFieldEnum = {
   id: 'id',
   numOfPeople: 'numOfPeople',
+  bookingDate: 'bookingDate',
+  totalPrice: 'totalPrice',
+  remarks: 'remarks',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   locationId: 'locationId',
   userId: 'userId'
 } as const
@@ -704,7 +710,9 @@ export const UserScalarFieldEnum = {
   lastName: 'lastName',
   email: 'email',
   password: 'password',
-  role: 'role'
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]

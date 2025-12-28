@@ -1,8 +1,9 @@
 import fs from "fs";
 import path from "path";
 import csv from "csv-parser";
-import { prisma } from "../lib/prisma.js";
+
 import { fileURLToPath } from "url";
+import { prisma } from "../src/lib/prisma.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
