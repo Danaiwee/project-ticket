@@ -67,3 +67,18 @@ export const GetAvailabilitySchema = z.object({
 export const GetUserBookingsSchema = PaginatedSearchSchema.extend({
   userId: z.string().min(1, "User id is required"),
 });
+
+export const GetLocationDateSchema = PaginatedSearchSchema.extend({
+  locationId: z.string().cuid(),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format (YYYY-MM-DD)"),
+});
+
+export const UpdateDateLimitSchema = z.object({
+  locationId: z.string().min(1, "Location id is required"),
+  limitBooking: z
+    .number()
+    .min(1, "Limit must at least 1 people")
+    .max(500, "Limit cannot exceed 500 people"),
+});

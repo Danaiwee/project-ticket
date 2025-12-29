@@ -5,7 +5,8 @@ import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import locationRoutes from "./routes/location.route.js";
-import BookingRoutes from "./routes/booking.route.js";
+import nookingRoutes from "./routes/booking.route.js";
+import adminRoutes from "./routes/admin.route.js";
 
 dotenv.config();
 
@@ -18,7 +19,8 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/locations", locationRoutes);
-app.use("/api/booking", BookingRoutes);
+app.use("/api/booking", nookingRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`[server]: Server is running at http://localhost:${PORT}`);

@@ -2,7 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import handleError from "../lib/handler/error.js";
 import { prisma } from "../lib/prisma.js";
-import { NotFoundError } from "../lib/http-error.js";
+import {
+  ForbiddenError,
+  NotFoundError,
+  UnauthorizedError,
+} from "../lib/http-error.js";
 
 export async function protectRoute(
   req: Request,
@@ -26,12 +30,32 @@ export async function protectRoute(
         firstName: true,
         lastName: true,
         email: true,
+        role: true,
       },
     });
 
     if (!user) throw new NotFoundError("User");
 
     req.user = user;
+
+    next();
+  } catch (error) {
+    return handleError(error, res);
+  }
+}
+
+export async function adminRoute(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const user = req.user;
+    if (!user) throw new UnauthorizedError("Authentication required");
+
+    const isAdmin = user.role === "ADMIN";
+
+    if (!isAdmin) throw new ForbiddenError("Access denied: Admins only");
 
     next();
   } catch (error) {
