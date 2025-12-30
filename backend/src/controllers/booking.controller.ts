@@ -107,13 +107,16 @@ export async function deleteBooking(req: Request, res: Response) {
   const userId = req.user.id;
 
   try {
+    const user = req.user;
+
     const booking = await prisma.booking.findUnique({
       where: { id: bookingId },
     });
     if (!booking) throw new NotFoundError("Booking");
 
     const isAuthorized = userId === booking.userId;
-    if (!isAuthorized)
+    const isAdmin = user.role === "ADMIN";
+    if (!isAuthorized && !isAdmin)
       throw new Error("Unauthorzed - you cannot delete this booking");
 
     await prisma.booking.delete({
@@ -126,7 +129,7 @@ export async function deleteBooking(req: Request, res: Response) {
   }
 }
 
-export async function checkAvailibility(req: Request, res: Response) {
+export async function checkAvailability(req: Request, res: Response) {
   const { id } = req.params;
   const { date: queryDate } = req.query;
 

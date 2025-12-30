@@ -51,7 +51,7 @@ export const api = {
         searchParams.append("pageSize", params.pageSize.toString());
 
       const queryString = searchParams.toString();
-      const url = `${API_BASE_URL}/booking/user-booking${
+      const url = `${API_BASE_URL}/bookings/user-booking${
         queryString ? `?${queryString}` : ""
       }`;
 
@@ -59,17 +59,17 @@ export const api = {
     },
 
     cancelBooking: (id: string) =>
-      fetchHandler(`${API_BASE_URL}/booking/${id}`, {
+      fetchHandler(`${API_BASE_URL}/bookings/${id}`, {
         method: "DELETE",
       }),
 
     getAvaliable: (id: string, date: string) =>
       fetchHandler(
-        `${API_BASE_URL}/booking/check-available/${id}?date=${date}`
+        `${API_BASE_URL}/bookings/check-available/${id}?date=${date}`
       ),
 
     createBooking: (locationId: string, params: CreateBookingParams) =>
-      fetchHandler(`${API_BASE_URL}/booking/create/${locationId}`, {
+      fetchHandler(`${API_BASE_URL}/bookings/create/${locationId}`, {
         method: "POST",
         body: JSON.stringify(params),
       }),

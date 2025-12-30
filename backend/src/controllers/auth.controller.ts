@@ -25,7 +25,7 @@ export async function signup(req: Request, res: Response) {
     const isExistingEmail = await prisma.user.findUnique({
       where: { email },
     });
-    if (isExistingEmail) throw new Error("Email is already exist");
+    if (isExistingEmail) throw new Error("Email already exists");
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
@@ -36,6 +36,7 @@ export async function signup(req: Request, res: Response) {
         email,
         password: hashedPassword,
       },
+      select: { id: true },
     });
     if (!newUser) throw new Error("Failed to create new user");
 

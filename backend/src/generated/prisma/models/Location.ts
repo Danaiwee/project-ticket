@@ -426,7 +426,7 @@ export type LocationCreateInput = {
   longitude: number
   importance?: string | null
   details?: string | null
-  limitBooking: number
+  limitBooking?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   bookings?: Prisma.BookingCreateNestedManyWithoutLocationInput
@@ -446,7 +446,7 @@ export type LocationUncheckedCreateInput = {
   longitude: number
   importance?: string | null
   details?: string | null
-  limitBooking: number
+  limitBooking?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   bookings?: Prisma.BookingUncheckedCreateNestedManyWithoutLocationInput
@@ -506,7 +506,7 @@ export type LocationCreateManyInput = {
   longitude: number
   importance?: string | null
   details?: string | null
-  limitBooking: number
+  limitBooking?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -683,7 +683,7 @@ export type LocationCreateWithoutBookingsInput = {
   longitude: number
   importance?: string | null
   details?: string | null
-  limitBooking: number
+  limitBooking?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -702,7 +702,7 @@ export type LocationUncheckedCreateWithoutBookingsInput = {
   longitude: number
   importance?: string | null
   details?: string | null
-  limitBooking: number
+  limitBooking?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }

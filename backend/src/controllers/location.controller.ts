@@ -27,12 +27,15 @@ export async function getLocations(req: Request, res: Response) {
   const skip = (page - 1) * pageSize;
 
   try {
-    const whereClause = {
-      name: {
-        contains: query,
-        mode: "insensitive" as const, //ignore case insensitive
-      },
-    };
+    const whereClause: any = query 
+    ? {
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { province: { contains: query, mode: "insensitive" } },
+          { typeName: { contains: query, mode: "insensitive" } },
+        ],
+      }
+    : {};
 
     const totalCount = await prisma.location.count({ where: whereClause });
 

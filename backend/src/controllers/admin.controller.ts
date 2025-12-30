@@ -13,8 +13,8 @@ export async function getLocationDateBookings(req: Request, res: Response) {
   const params = {
     locationId: id,
     date: typeof req.query.date === "string" ? req.query.date : undefined,
-    page: req.query.page ? Number(req.query.page) : 1,
-    pageSize: req.query.pageSize ? Number(req.query.pageSize) : 10,
+    page: Number(req.query.page) || 1,
+    pageSize: Number(req.query.pageSize) || 10,
     query: typeof req.query.query === "string" ? req.query.query : undefined,
     filter: req.query.filter as string | undefined,
   };
@@ -131,3 +131,14 @@ export async function updateLocationLimit(req: Request, res: Response) {
     return handleError(error, res);
   }
 }
+
+/*Example data of maxinumBooking
+  [
+  {
+    "bookingDate": "2026-01-01T00:00:00.000Z",
+    "_sum": {
+      "numOfPeople": 9
+    }
+  }
+]
+*/

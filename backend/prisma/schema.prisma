@@ -27,7 +27,7 @@ model Location {
   longitude Float
   importance String?
   details String?
-  limitBooking Int
+  limitBooking Int @default(10)
 
   bookings Booking[]
   
@@ -50,6 +50,10 @@ model Booking {
 
   userId String
   user User @relation(fields: [userId], references: [id])
+
+  @@index([locationId])
+  @@index([userId])
+  @@index([bookingDate])
 
 }
 
