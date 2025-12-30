@@ -38,7 +38,7 @@ const BookingPage = async ({ searchParams }: RouteParams) => {
         />
       </div>
 
-      <h1 className="text-md text-gray-700 flex justify-end font-semibold">
+      <h1 className="text-md text-gray-700 flex justify-end font-semibold pr-4 sm:pr-0">
         {`คุณมีรายการจองทั้งหมด ${totalCount || 0} รายการ`}
       </h1>
       <div className="w-full max-w-4xl">

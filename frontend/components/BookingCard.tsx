@@ -18,7 +18,7 @@ const BookingCard = ({ booking }: BookingProps) => {
 
   const dateBooking = formatBookingDate(bookingDate);
   const formattedRemarks = remarks ? remarks : "-";
-  const formattedBookingNumber = id.slice(0, 6);
+  const formattedBookingNumber = id.slice(-7).toUpperCase();
 
   return (
     <Accordion

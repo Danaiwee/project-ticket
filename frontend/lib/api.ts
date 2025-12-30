@@ -57,5 +57,10 @@ export const api = {
 
       return fetchHandler(url, options);
     },
+
+    cancelBooking: (id: string) =>
+      fetchHandler(`${API_BASE_URL}/booking/${id}`, {
+        method: "DELETE",
+      }),
   },
 };

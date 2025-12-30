@@ -45,7 +45,7 @@ const NavLinks = ({ user }: NavLinksProps) => {
           </Link>
 
           <Link
-            href={ROUTES.BOOKING}
+            href={ROUTES.SIGN_UP}
             className="text-gray-500 hover:text-gray-600"
           >
             สมัครสมาชิก
