@@ -15,3 +15,11 @@ export const formatBookingDate = (date: Date | string) => {
 
   return format(d, "d MMM yyyy");
 };
+
+export const formatAdminDate = (date: string) => {
+  const dateObj = parseISO(date);
+
+  const formattedDate = format(dateObj, "d/M/yyyy");
+
+  return formattedDate;
+};

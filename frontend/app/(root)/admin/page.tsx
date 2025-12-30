@@ -3,19 +3,34 @@ import HeaderBox from "@/components/HeaderBox";
 import LocalSearchbar from "@/components/LocalSearchbar";
 import LocationCard from "@/components/LocationCard";
 import Pagination from "@/components/Pagination";
-import { LOCATIONS } from "@/constants";
 import { DEFAULT_EMPTY } from "@/constants/empty";
 import { ROUTES } from "@/constants/routes";
+import { api } from "@/lib/api";
+import { getSession } from "@/lib/handler/session";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-const AdminPage = () => {
-  const locations = LOCATIONS;
+const AdminPage = async ({ searchParams }: RouteParams) => {
+  const cookieStore = await cookies();
+  const cookieHeader = cookieStore.toString();
+  const { page, pageSize, query } = await searchParams;
 
-  const success = true;
-  const isNext = false;
+  const authUser = await getSession(cookieHeader);
+  if (!authUser) redirect(ROUTES.SIGN_IN);
+
+  const isAdmin = authUser.role === "ADMIN";
+  if (!isAdmin) redirect(ROUTES.HOME);
+
+  const { success, data, error } = (await api.locations.getAll({
+    page: Number(page) || 1,
+    pageSize: Number(pageSize) || 10,
+    query,
+  })) as ActionResponse<PaginatedLocations>;
+  const { locations, isNext } = data || {};
 
   return (
     <section className="w-full mx-auto max-w-7xl">
-      <div className="flex h-full max-h-screen w-full flex-col gap-8  p-8 xl:py-12 font-kanit">
+      <div className="flex h-full w-full flex-col gap-8 mt-14 font-kanit">
         <HeaderBox
           title="ยินดีต้อนรับ Admin"
           subtext="จัดการและดูรายละเอียดการจองทั้งหมด"
@@ -37,6 +52,7 @@ const AdminPage = () => {
             success={success}
             data={locations}
             empty={DEFAULT_EMPTY}
+            error={error}
             render={(locations) => (
               <div className="mt-12 flex flex-wrap gap-5">
                 {locations.map((location: LocationData) => (
@@ -47,7 +63,7 @@ const AdminPage = () => {
           />
         </div>
 
-        <Pagination isNext={isNext} page={1} />
+        <Pagination isNext={isNext || false} page={Number(page) || 1} />
       </div>
     </section>
   );

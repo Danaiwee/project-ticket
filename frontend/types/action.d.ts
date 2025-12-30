@@ -61,6 +61,18 @@ declare global {
     totalPrice: number;
     remarks?: string;
   }
+
+  interface GetLocationBookingsParams {
+    locationId: string;
+    date: string;
+    page?: number;
+    pageSize?: number;
+  }
+
+  interface AdminLocationBookingsResponse {
+    bookings: Booking[];
+    isNext: boolean;
+  }
 }
 
 export {};

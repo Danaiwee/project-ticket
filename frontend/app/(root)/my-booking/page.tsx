@@ -29,7 +29,7 @@ const BookingPage = async ({ searchParams }: RouteParams) => {
 
   return (
     <section className="w-full mx-auto max-w-7xl">
-      <div className="flex h-full max-h-screen w-full flex-col gap-8  p-8 xl:py-12 font-kanit">
+      <div className="flex h-full max-h-screen w-full flex-col gap-8 mt-14 font-kanit">
         <HeaderBox
           title="ยินดีต้อนรับ"
           user={authUser}

@@ -74,4 +74,26 @@ export const api = {
         body: JSON.stringify(params),
       }),
   },
+
+  admin: {
+    getLocationBookings: (params: GetLocationBookingsParams, options: any) => {
+      const { locationId, date, page, pageSize } = params;
+
+      const urlParams = new URLSearchParams({
+        date,
+        page: String(page || 1),
+        pageSize: String(pageSize || 10),
+      });
+
+      return fetchHandler(
+        `${API_BASE_URL}/admin/${locationId}?${urlParams.toString()}`,
+        options
+      );
+    },
+    updateLimit: (id: string, newLimit: number) =>
+      fetchHandler(`${API_BASE_URL}/admin/${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ limitBooking: newLimit }),
+      }),
+  },
 };

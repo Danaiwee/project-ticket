@@ -41,7 +41,7 @@ const HomePage = async ({ searchParams }: RouteParams) => {
         </div>
       </div>
 
-      <div className="mt-10 w-full max-w-7xl flex flex-col p-5 sm:p-8 md:px-20 xl:px-0 mx-auto">
+      <div className="mt-10 w-full max-w-7xl flex flex-col px-4 md:px-20 xl:px-0 mx-auto">
         <h1 className="font-kanit text-gray-500 text-3xl font-semibold">
           สถานที่ท่องเที่ยวทั้งหมด
         </h1>
