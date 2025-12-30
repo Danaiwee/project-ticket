@@ -12,6 +12,9 @@ import CustomInput from "./CustomInput";
 import { Button } from "./ui/button";
 import { Form } from "./ui/form";
 import { SignInSchema } from "@/lib/validation";
+import { api } from "@/lib/api";
+import { toast } from "sonner";
+import { ROUTES } from "@/constants/routes";
 
 const SignInForm = () => {
   const router = useRouter();
@@ -24,7 +27,30 @@ const SignInForm = () => {
     },
   });
 
-  const submit = async (data: z.infer<typeof SignInSchema>) => {};
+  const submit = async (data: z.infer<typeof SignInSchema>) => {
+    setIsLoading(true);
+    try {
+      const res = (await api.auth.signIn(data)) as ActionResponse;
+
+      if (res.success) {
+        toast("Success", { description: "เข้าสู่ระบบสำเร็จ" });
+
+        router.push(ROUTES.HOME);
+        return;
+      }
+
+      throw new Error(res.error?.message || "อีเมลหรือรหัสผ่านไม่ถูกต้อง");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast("เกิดข้อผิดพลาด", {
+        description:
+          error?.message || "ไม่สามารถเชื่อมต่อกับระบบได้ กรุณาลองใหม่ภายหลัง",
+      });
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>

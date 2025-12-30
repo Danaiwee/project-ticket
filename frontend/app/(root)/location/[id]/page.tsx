@@ -1,11 +1,34 @@
 import Booking from "@/components/Booking";
 import MapWrapper from "@/components/MapWrapper";
-import { LOCATION_IMAGES, LOCATIONS } from "@/constants";
+import StateSkeleton from "@/components/StateSkeleton";
+import { LOCATION_IMAGES } from "@/constants";
+import { DEFAULT_EMPTY } from "@/constants/empty";
+import { api } from "@/lib/api";
 import { BadgeCheck, Map, MapPin } from "lucide-react";
 import Image from "next/image";
 
-const LocationPage = () => {
-  const location = LOCATIONS[0];
+const LocationPage = async ({ params }: RouteParams) => {
+  const { id: locationId } = await params;
+
+  const { success, data } = (await api.locations.getLocation(
+    locationId
+  )) as ActionResponse<{ location: LocationData }>;
+
+  const { location } = data || {};
+
+  if (!success || !location) {
+    return (
+      <StateSkeleton
+        image={{
+          light: "/images/light-illustration.png",
+          alt: "Empty state illustration",
+        }}
+        title={DEFAULT_EMPTY.title}
+        message={DEFAULT_EMPTY.message}
+      />
+    );
+  }
+
   const {
     id,
     name,

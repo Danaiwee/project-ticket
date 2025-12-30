@@ -16,15 +16,17 @@ const LocationCard = ({ location, isAdmin = false }: LocationCardProps) => {
 
   return (
     <Link href={href} className="bg-gray-50 w-full max-w-70 shadow-xl">
-      <article className="w-full flex-col items-center justify-center rounded-2xl border ">
-        <Image
-          src={imageSrc}
-          className="w-full object-cover rounded-md h-50"
-          width={200}
-          height={200}
-          alt="Location image"
-          priority
-        />
+      <article className="w-full flex-col items-center justify-center rounded-2xl border overflow-hidden">
+        <div className="relative w-full h-50">
+          <Image
+            src={imageSrc}
+            alt={name}
+            fill 
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority
+          />
+        </div>
 
         <div className="flex flex-col pt-3 pb-3 px-4">
           <p className="text-sm font-semibold text-sky-500 font-kanit">

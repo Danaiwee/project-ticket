@@ -12,6 +12,9 @@ import CustomInput from "./CustomInput";
 import { Button } from "./ui/button";
 import { Form } from "./ui/form";
 import { SignUpSchema } from "@/lib/validation";
+import { api } from "@/lib/api";
+import { toast } from "sonner";
+import { ROUTES } from "@/constants/routes";
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -26,7 +29,30 @@ const SignUpForm = () => {
     },
   });
 
-  const submit = async (data: z.infer<typeof SignUpSchema>) => {};
+  const submit = async (data: z.infer<typeof SignUpSchema>) => {
+    setIsLoading(true);
+    try {
+      const res = (await api.auth.signUp(data)) as ActionResponse;
+
+      if (res.success) {
+        toast("Success", { description: "ลงทะเบียนและเข้าสู่ระบบสำเร็จ" });
+
+        router.push(ROUTES.HOME);
+        return;
+      }
+
+      throw new Error(res.error?.message || "กรุณาตรวจสอบข้อมูลอีกครั้ง");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast("เกิดข้อผิดพลาด", {
+        description:
+          error?.message || "ไม่สามารถเชื่อมต่อกับระบบได้ กรุณาลองใหม่ภายหลัง",
+      });
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -92,7 +118,10 @@ const SignUpForm = () => {
         <p className="text-[14px] font-normal text-gray-600">
           Already have an account?
         </p>
-        <Link href={"/sign-in"} className="text-[14px] cursor-pointer font-medium text-blue-600">
+        <Link
+          href={"/sign-in"}
+          className="text-[14px] cursor-pointer font-medium text-blue-600"
+        >
           Sign in
         </Link>
       </footer>

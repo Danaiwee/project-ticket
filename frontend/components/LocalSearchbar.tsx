@@ -43,7 +43,7 @@ const LocalSearchbar = ({ route, placeholder }: LocalSearchbarProps) => {
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [searchQuery, searchParams, router, route, pathname]);
+  }, [searchQuery]);
 
   return (
     <div className="bg-gray-50 flex min-h-16 grow items-center gap-4 rounded-[10px] px-4 border shadow-xl">

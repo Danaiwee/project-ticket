@@ -1,8 +1,9 @@
 import Navbar from "@/components/Navbar";
 import { AUTHUSER } from "@/constants";
+import { api } from "@/lib/api";
 import React from "react";
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const loggedInUser = AUTHUSER;
 
   return (

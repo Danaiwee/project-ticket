@@ -2,9 +2,9 @@ import DataRenderer from "@/components/DataRenderer";
 import LocalSearchbar from "@/components/LocalSearchbar";
 import LocationCard from "@/components/LocationCard";
 import Pagination from "@/components/Pagination";
-import { LOCATIONS } from "@/constants";
 import { DEFAULT_EMPTY } from "@/constants/empty";
 import { ROUTES } from "@/constants/routes";
+import { api } from "@/lib/api";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -14,10 +14,15 @@ export const metadata: Metadata = {
     "สัมผัสประสบการณ์ใหม่ในการจองสถานที่ท่องเที่ยวกับ TicketSpace ระบบที่เชื่อมโยงคุณกับสถานที่ต่างๆ พร้อมเช็คที่ว่างแบบเรียลไทม์ จองง่าย ได้ที่แน่นอน หมดกังวลเรื่องการจองซ้ำซ้อน",
 };
 
-const HomePage = () => {
-  const locations = LOCATIONS;
-  const success = true;
-  const isNext = false;
+const HomePage = async ({ searchParams }: RouteParams) => {
+  const { page, pageSize, query } = await searchParams;
+
+  const { success, data, error } = (await api.locations.getAll({
+    page: Number(page) || 1,
+    pageSize: Number(pageSize) || 10,
+    query,
+  })) as ActionResponse<PaginatedLocations>;
+  const { locations, isNext } = data || {};
 
   return (
     <section className="w-full h-full">
@@ -37,7 +42,7 @@ const HomePage = () => {
       </div>
 
       <div className="mt-10 w-full max-w-7xl flex flex-col p-5 sm:p-8 md:px-20 xl:px-0 mx-auto">
-        <h1 className="font-kanit text-gray-500 text-2xl">
+        <h1 className="font-kanit text-gray-500 text-3xl font-semibold">
           สถานที่ท่องเที่ยวทั้งหมด
         </h1>
 
@@ -45,6 +50,7 @@ const HomePage = () => {
           success={success}
           data={locations}
           empty={DEFAULT_EMPTY}
+          error={error}
           render={(locations) => (
             <div className="mt-12 flex flex-wrap gap-5">
               {locations.map((location: LocationData) => (
@@ -54,7 +60,7 @@ const HomePage = () => {
           )}
         />
 
-        <Pagination isNext={isNext} page={1} />
+        <Pagination isNext={isNext || false} page={Number(page) || 1} />
       </div>
     </section>
   );

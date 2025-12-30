@@ -5,7 +5,6 @@ import { Button } from "./ui/button";
 interface StateSkeletonProps {
   image: {
     light: string;
-    dark: string;
     alt: string;
   };
   title: string;
@@ -24,25 +23,16 @@ const StateSkeleton = ({
 }: StateSkeletonProps) => {
   return (
     <div className="mt-16 flex w-full flex-col items-center justify-center sm:mt-10">
-      <>
-        <Image
-          src={image.dark}
-          alt={image.alt}
-          width={270}
-          height={200}
-          className="hidden object-contain dark:block"
-        />
-        <Image
-          src={image.light}
-          alt={image.alt}
-          width={270}
-          height={200}
-          className="block object-contain dark:hidden"
-        />
-      </>
+      <Image
+        src={image.light}
+        alt={image.alt}
+        width={300}
+        height={300}
+        className="block object-contain"
+      />
 
-      <h2 className="h2-bold text-dark200_light900 mt-8">{title}</h2>
-      <p className="body-regular text-dark500_light700 my-3.5 max-w-md text-center">
+      <h2 className="h2-bold mt-8 font-kanit text-xl">{title}</h2>
+      <p className="my-3.5 max-w-md text-center text-xl font-kanit">
         {message}
       </p>
 

@@ -1,8 +1,7 @@
-import { ROUTES } from "./routes";
 
 export const DEFAULT_EMPTY = {
   title: "ไม่พบข้อมูล",
-  message: "ไม่พยข้อมูลที่ต้องการในระบบ",
+  message: "ไม่พบข้อมูลที่ต้องการในระบบ",
 };
 
 export const DEFAULT_ERROR = {

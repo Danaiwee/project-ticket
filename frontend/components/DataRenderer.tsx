@@ -33,7 +33,6 @@ const DataRenderer = <T,>({
       <StateSkeleton
         image={{
           light: "/images/light-illustration.png",
-          dark: "/images/dark-illustration.png",
           alt: "Empty state illustration",
         }}
         title={empty.title}
@@ -48,7 +47,6 @@ const DataRenderer = <T,>({
       <StateSkeleton
         image={{
           light: "/images/light-error.png",
-          dark: "/images/dark-error.png",
           alt: "Error state illustation",
         }}
         title={DEFAULT_ERROR.title || error?.message || ""}
