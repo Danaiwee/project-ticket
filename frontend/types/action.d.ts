@@ -34,6 +34,19 @@ declare global {
     email: string;
     password: string;
   }
+
+  interface GetUserBookingsParams {
+    page?: number;
+    pageSize?: number;
+    query?: number;
+    filter?: number;
+  }
+
+  interface BookingsResponse {
+    bookings: Booking[];
+    totalCount: number;
+    isNext: boolean;
+  }
 }
 
 export {};

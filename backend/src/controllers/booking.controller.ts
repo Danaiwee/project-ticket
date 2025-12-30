@@ -228,6 +228,7 @@ export async function getUserBookings(req: Request, res: Response) {
           id: true,
           bookingDate: true,
           numOfPeople: true,
+          totalPrice: true,
           location: {
             select: {
               name: true,

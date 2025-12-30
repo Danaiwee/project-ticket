@@ -18,6 +18,7 @@ const BookingCard = ({ booking }: BookingProps) => {
 
   const dateBooking = formatBookingDate(bookingDate);
   const formattedRemarks = remarks ? remarks : "-";
+  const formattedBookingNumber = id.slice(0, 6);
 
   return (
     <Accordion
@@ -32,7 +33,9 @@ const BookingCard = ({ booking }: BookingProps) => {
               <h3 className="text-gray-900 text-[17px] font-semibold">
                 เลขที่จอง:{" "}
               </h3>
-              <p className="text-gray-500 text-[17px] uppercase">{id}</p>
+              <p className="text-gray-500 text-[17px] uppercase">
+                {formattedBookingNumber}
+              </p>
             </div>
 
             <div className="flex-1 flex gap-1">

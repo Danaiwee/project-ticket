@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetchHandler } from "./handler/fetch";
 
 const API_BASE_URL =
@@ -40,5 +41,21 @@ export const api = {
     },
     getLocation: (id: string) =>
       fetchHandler(`${API_BASE_URL}/locations/${id}`),
+  },
+
+  booking: {
+    getUserBookings: (params: GetUserBookingsParams, options: any) => {
+      const searchParams = new URLSearchParams();
+      if (params?.page) searchParams.append("page", params.page.toString());
+      if (params?.pageSize)
+        searchParams.append("pageSize", params.pageSize.toString());
+
+      const queryString = searchParams.toString();
+      const url = `${API_BASE_URL}/booking/user-booking${
+        queryString ? `?${queryString}` : ""
+      }`;
+
+      return fetchHandler(url, options);
+    },
   },
 };

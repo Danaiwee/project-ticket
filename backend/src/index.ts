@@ -5,7 +5,7 @@ import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import locationRoutes from "./routes/location.route.js";
-import nookingRoutes from "./routes/booking.route.js";
+import bookingRoutes from "./routes/booking.route.js";
 import adminRoutes from "./routes/admin.route.js";
 
 dotenv.config();
@@ -24,7 +24,7 @@ app.use(
 
 app.use("/api/auth", authRoutes);
 app.use("/api/locations", locationRoutes);
-app.use("/api/booking", nookingRoutes);
+app.use("/api/booking", bookingRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.listen(PORT, () => {
