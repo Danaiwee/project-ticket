@@ -9,6 +9,18 @@ import { BadgeCheck, Map, MapPin } from "lucide-react";
 import { cookies } from "next/headers";
 import Image from "next/image";
 
+export async function generateMetadata({ params }: RouteParams) {
+  const { id } = await params;
+  const { data } = (await api.locations.getLocation(id)) as ActionResponse<{
+    location: LocationData;
+  }>;
+
+  return {
+    title: `TicketSpace | ${data?.location?.name || "สถานที่"} `,
+    description: data?.location?.details?.slice(0, 160),
+  };
+}
+
 const LocationPage = async ({ params }: RouteParams) => {
   const { id: locationId } = await params;
   const cookieStore = await cookies();

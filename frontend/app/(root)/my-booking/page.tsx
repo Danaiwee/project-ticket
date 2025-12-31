@@ -8,6 +8,12 @@ import { getSession } from "@/lib/handler/session";
 import { api } from "@/lib/api";
 import { redirect } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TicketSpace | การจองของคุณ",
+  description: "ดูรายละเลียดการจองและจัดการข้อมูลของคุณ",
+};
 
 const BookingPage = async ({ searchParams }: RouteParams) => {
   const cookieStore = await cookies();

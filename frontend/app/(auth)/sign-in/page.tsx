@@ -1,5 +1,11 @@
 import AuthHeader from "@/components/AuthHeader";
 import SignInForm from "@/components/SignInForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TicketSpace | เข้าสู่ระบบ",
+  description: "เข้าสู่ระบบเพื่อจัดการการจองสถานที่ของคุณกับ TicketSpace",
+};
 
 const SignInPage = () => {
   return (

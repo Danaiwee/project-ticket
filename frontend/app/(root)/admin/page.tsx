@@ -7,8 +7,15 @@ import { DEFAULT_EMPTY } from "@/constants/empty";
 import { ROUTES } from "@/constants/routes";
 import { api } from "@/lib/api";
 import { getSession } from "@/lib/handler/session";
+import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "TicketSpace | Admin",
+  description:
+    "ดูรายการและจัดการการจองสถานทีท่องเที่ยวทั้งหมด",
+};
 
 const AdminPage = async ({ searchParams }: RouteParams) => {
   const cookieStore = await cookies();

@@ -9,9 +9,9 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "TicketSpace - หน้าหลัก",
+  title: "TicketSpace | หน้าหลัก",
   description:
-    "สัมผัสประสบการณ์ใหม่ในการจองสถานที่ท่องเที่ยวกับ TicketSpace ระบบที่เชื่อมโยงคุณกับสถานที่ต่างๆ พร้อมเช็คที่ว่างแบบเรียลไทม์ จองง่าย ได้ที่แน่นอน หมดกังวลเรื่องการจองซ้ำซ้อน",
+    "สัมผัสประสบการณ์ใหม่ในการจองสถานที่ท่องเที่ยวกับ TicketSpace ระบบที่เชื่อมโยงคุณกับสถานที่ต่างๆ พร้อมเช็คที่ว่าง จองง่าย ได้ที่แน่นอน หมดกังวลเรื่องการจองซ้ำซ้อน",
 };
 
 const HomePage = async ({ searchParams }: RouteParams) => {

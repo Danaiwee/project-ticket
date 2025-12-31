@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -39,7 +39,7 @@ const SignUpForm = () => {
       const res = (await api.auth.signUp(data)) as ActionResponse;
 
       if (res.success) {
-        toast("Success", { description: "ลงทะเบียนและเข้าสู่ระบบสำเร็จ" });
+        toast("สำเร็จ", { description: "ลงทะเบียนและเข้าสู่ระบบสำเร็จ" });
 
         const destination = callbackUrl || ROUTES.HOME;
 
@@ -62,42 +62,40 @@ const SignUpForm = () => {
 
   return (
     <>
-      <section className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2 font-kanit">
         <h1 className="font-semibold text-2xl sm:text-3xl text-gray-900">
-          Sign in
+          ลงทะเบียน (Sign Up)
         </h1>
-        <p className="text-gray-500 text-md font-semibold">
-          Please enter your details
-        </p>
+        <p className="text-gray-500 text-md font-semibold">กรุณากรอกข้อมูล</p>
       </section>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(submit)} className="space-y-6">
           <CustomInput
             control={form.control}
             name="firstName"
-            label="First name"
-            placeholder="Enter your first name"
+            label="ชื่อจริง (First name)"
+            placeholder="กรุณากรอกชื่อจริง"
           />
 
           <CustomInput
             control={form.control}
             name="lastName"
-            label="Last name"
-            placeholder="Enter your last name"
+            label="นามสกุล (Last name)"
+            placeholder="กรุณากรอกนามสกุล"
           />
 
           <CustomInput
             control={form.control}
             name="email"
-            label="Email"
-            placeholder="Enter your email"
+            label="อีเมล (Email)"
+            placeholder="กรุณากรอกอีเมล"
           />
 
           <CustomInput
             control={form.control}
             name="password"
-            label="Password"
-            placeholder="Enter your password"
+            label="รหัสผ่าน (Password)"
+            placeholder="กรุณากรอกรหัสผ่าน"
             type="password"
           />
 
@@ -110,10 +108,10 @@ const SignUpForm = () => {
               {isLoading ? (
                 <>
                   <Loader2 size={20} className="animate-spin" /> &nbsp;
-                  Loading...
+                  กำลังโหลด
                 </>
               ) : (
-                "Sign in"
+                "ลงทะเบียน"
               )}
             </Button>
           </div>
@@ -122,13 +120,13 @@ const SignUpForm = () => {
 
       <footer className="flex justify-center gap-1">
         <p className="text-[14px] font-normal text-gray-600">
-          Already have an account?
+          หากคุณมีบัญชีอยู่แล้ว ?
         </p>
         <Link
           href={"/sign-in"}
-          className="text-[14px] cursor-pointer font-medium text-blue-600"
+          className="text-[14px] cursor-pointer text-blue-600 font-semibold"
         >
-          Sign in
+          เข้าสู่ระบบ
         </Link>
       </footer>
     </>

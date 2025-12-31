@@ -1,8 +1,7 @@
-"use client"; // ต้องมีบรรทัดนี้
+"use client";
 
 import dynamic from "next/dynamic";
 
-// ย้ายการทำ dynamic import มาไว้ที่นี่
 const LocationMap = dynamic(() => import("./LocationMap"), {
   ssr: false,
   loading: () => (

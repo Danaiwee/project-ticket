@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -37,7 +37,7 @@ const SignInForm = () => {
       const res = (await api.auth.signIn(data)) as ActionResponse;
 
       if (res.success) {
-        toast("Success", { description: "เข้าสู่ระบบสำเร็จ" });
+        toast("สำเร็จ", { description: "เข้าสู่ระบบสำเร็จ" });
 
         const destination = callbackUrl || ROUTES.HOME;
 
@@ -60,28 +60,26 @@ const SignInForm = () => {
 
   return (
     <>
-      <section className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2 font-kanit">
         <h1 className="font-semibold text-2xl sm:text-3xl text-gray-900">
-          Sign in
+          เข้าสู่ระบบ (Sign In)
         </h1>
-        <p className="text-gray-500 text-md font-semibold">
-          Please enter your details
-        </p>
+        <p className="text-gray-500 text-md font-semibold">กรุณากรอกข้อมูล</p>
       </section>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(submit)} className="space-y-6">
           <CustomInput
             control={form.control}
             name="email"
-            label="Email"
-            placeholder="Enter your email"
+            label="อีเมล (Email)"
+            placeholder="กรุณากรอกอีเมล"
           />
 
           <CustomInput
             control={form.control}
             name="password"
-            label="Password"
-            placeholder="Enter your password"
+            label="รหัสผ่าน (Password)"
+            placeholder="กรุณากรอกรหัสผ่าน"
             type="password"
           />
 
@@ -94,10 +92,10 @@ const SignInForm = () => {
               {isLoading ? (
                 <>
                   <Loader2 size={20} className="animate-spin" /> &nbsp;
-                  Loading...
+                  กำลังโหลด...
                 </>
               ) : (
-                "Sign in"
+                "เข้าสู่ระบบ"
               )}
             </Button>
           </div>
@@ -106,7 +104,7 @@ const SignInForm = () => {
 
       <footer className="flex justify-center gap-1">
         <p className="text-[14px] font-normal text-gray-600">
-          Don&apos; t have an account?
+          หากคุณยังไม่มีบัญชี ?
         </p>
         <Link
           href={
@@ -114,9 +112,9 @@ const SignInForm = () => {
               ? `/sign-up?callbackUrl=${encodeURIComponent(callbackUrl)}`
               : "/sign-up"
           }
-          className="text-[14px] cursor-pointer font-medium text-blue-600"
+          className="text-[14px] cursor-pointer font-medium text-blue-600 font-semibold"
         >
-          Sign up
+          ลงทะเบียน
         </Link>
       </footer>
     </>

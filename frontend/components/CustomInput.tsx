@@ -24,12 +24,12 @@ const CustomInput = <T extends FieldValues>({
       name={name}
       render={({ field }) => (
         <div className="flex flex-col gap-1.5">
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className="font-semibold">{label}</FormLabel>
           <div className="flex w-full flex-col">
             <FormControl>
               <Input
                 placeholder={placeholder}
-                className="text-[14px] placeholder:text-[14px] rounded-lg border border-gray-300 text-gray-700 font-semibold placeholder:text-gray-500 h-12"
+                className="text-[14px] placeholder:text-[14px] rounded-lg border border-gray-300 text-gray-700 font-semibold placeholder:text-gray-500 placeholder:font-medium h-12"
                 type={type}
                 id={name}
                 {...field}

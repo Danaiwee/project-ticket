@@ -1,5 +1,12 @@
 import AuthHeader from "@/components/AuthHeader";
 import SignUpForm from "@/components/SignUpForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TicketSpage | ลงทะเบียน",
+  description:
+    "ลงทะเบียนเพื่อเข้าสู่ระบบและจัดการการจองสถานที่ของคุณกับ TicketSpace",
+};
 
 const SignUpPage = () => {
   return (
