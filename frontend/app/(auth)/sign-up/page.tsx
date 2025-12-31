@@ -1,6 +1,8 @@
 import AuthHeader from "@/components/AuthHeader";
 import SignUpForm from "@/components/SignUpForm";
+import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "TicketSpage | ลงทะเบียน",
@@ -14,7 +16,9 @@ const SignUpPage = () => {
       <div className="flex w-full max-w-120 flex-col justify-center gap-4 py-5 md:gap-4 border p-8 rounded-xl shadow-xl">
         <AuthHeader />
 
-        <SignUpForm />
+        <Suspense fallback={<Loader2 className="size-3 animate-spin" />}>
+          <SignUpForm />
+        </Suspense>
       </div>
     </section>
   );

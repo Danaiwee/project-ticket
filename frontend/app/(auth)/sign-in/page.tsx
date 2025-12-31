@@ -1,6 +1,8 @@
 import AuthHeader from "@/components/AuthHeader";
 import SignInForm from "@/components/SignInForm";
+import { Loader2 } from "lucide-react";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "TicketSpace | เข้าสู่ระบบ",
@@ -13,7 +15,9 @@ const SignInPage = () => {
       <div className="flex w-full max-w-120 flex-col justify-center gap-4 py-5 md:gap-4 border p-8 rounded-xl shadow-xl">
         <AuthHeader />
 
-        <SignInForm />
+        <Suspense fallback={<Loader2 className="size-3 animate-spin" />}>
+          <SignInForm />
+        </Suspense>
       </div>
     </section>
   );
