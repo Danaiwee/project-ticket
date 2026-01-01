@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export async function getSession(cookieStore: any): Promise<User | null> {
   try {
-    // รวม Cookie ให้เป็น String ที่สะอาด
+    const token = cookieStore.get("accessToken");
+    console.log("Token found in Next.js Server Side:", token);
+
     const allCookies = cookieStore
       .getAll()
       .map((c: any) => `${c.name}=${c.value}`)
